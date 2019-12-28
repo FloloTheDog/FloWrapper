@@ -35,10 +35,12 @@ Client.on("message", (Message) => { // emitted whenever someone sends a message
 			try {
 				Commands[Command](Message, Arguments, Client);
 			} catch(Error) {
-				Message.channel.send(">.> An unexpected error ocurred while attempting to perform the selected function. Additional information:\n```" + Error + "\n```");
+				Message.channel.send(">.> An unexpected error ocurred while attempting to perform the selected function. Additional information:\n```" + Error + "\n```")
+					.catch(console.error); // something went really wrong >.>
 			}
 		} else {
 			// provide help if command doesnt exist
+			Mesage.channel.send(">.> Function does not exist.")
 		}
 	}
 });
